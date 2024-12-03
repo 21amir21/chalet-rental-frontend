@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/Register.scss";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -57,16 +58,12 @@ const RegisterPage = () => {
 
   return (
     <div
-      className="w-screen h-screen flex justify-center items-center flex-col bg-cover bg-center"
+      className="register"
       style={{ backgroundImage: 'url("./src/assets/register.jpg")' }}
     >
-      <div className="flex flex-col gap-4 w-2/5 p-10 bg-black bg-opacity-80 rounded-xl sm:w-4/5 md:w-3/5 lg:w-2/5">
-        <form
-          className="flex flex-col items-center gap-4"
-          onSubmit={handleSubmit}
-        >
+      <div className="register_content">
+        <form className="register_content_form" onSubmit={handleSubmit}>
           <input
-            className="w-full p-2 bg-transparent border-b border-white/30 text-white text-center outline-none placeholder-white focus:bg-transparent"
             placeholder="First Name"
             name="firstName"
             required
@@ -74,7 +71,6 @@ const RegisterPage = () => {
             onChange={handleChange}
           />
           <input
-            className="w-full p-2 bg-transparent border-b border-white/30 text-white text-center outline-none placeholder-white focus:bg-transparent"
             placeholder="Last Name"
             name="lastName"
             required
@@ -82,7 +78,6 @@ const RegisterPage = () => {
             onChange={handleChange}
           />
           <input
-            className="w-full p-2 bg-transparent border-b border-white/30 text-white text-center outline-none placeholder-white focus:bg-transparent"
             placeholder="Email"
             name="email"
             type="email"
@@ -91,7 +86,6 @@ const RegisterPage = () => {
             onChange={handleChange}
           />
           <input
-            className="w-full p-2 bg-transparent border-b border-white/30 text-white text-center outline-none placeholder-white focus:bg-transparent"
             placeholder="Password"
             name="password"
             type="password"
@@ -100,7 +94,6 @@ const RegisterPage = () => {
             onChange={handleChange}
           />
           <input
-            className="w-full p-2 bg-transparent border-b border-white/30 text-white text-center outline-none placeholder-white focus:bg-transparent"
             placeholder="Confirm Password"
             name="confirmPassword"
             type="password"
@@ -109,7 +102,6 @@ const RegisterPage = () => {
             onChange={handleChange}
           />
           <input
-            className="w-full p-2 bg-transparent border-b border-white/30 text-white text-center outline-none placeholder-white focus:bg-transparent"
             placeholder="User Type"
             name="userType"
             required
@@ -127,6 +119,7 @@ const RegisterPage = () => {
             type="file"
             name="profileImage"
             accept="image/*"
+            style={{ display: "none" }}
             className="hidden"
             onChange={handleChange}
           />
@@ -134,11 +127,7 @@ const RegisterPage = () => {
             htmlFor="image"
             className="flex flex-col items-center cursor-pointer gap-2 text-white text-sm"
           >
-            <img
-              src="./src/assets/uploadPhoto.png"
-              alt="add profile image"
-              className="w-6"
-            />
+            <img src="./src/assets/uploadPhoto.png" alt="add profile image" />
             <p>Upload Your Profile Photo</p>
           </label>
 
@@ -150,11 +139,7 @@ const RegisterPage = () => {
             />
           )}
 
-          <button
-            type="submit"
-            disabled={!passwordMatch}
-            className="mt-4 py-3 px-6 bg-red-400 text-white font-semibold text-lg rounded-lg w-1/2 transition ease-in-out duration-300 hover:shadow-lg"
-          >
+          <button type="submit" disabled={!passwordMatch}>
             REGISTER
           </button>
         </form>

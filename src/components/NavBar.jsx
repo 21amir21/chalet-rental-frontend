@@ -4,13 +4,14 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { setLogOut } from "../redux/state";
+import "../styles/NavBar.scss";
 
 const NavBar = () => {
   const [dropDownMenu, setDropDownMenu] = useState(false);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   return (
-    <div>
+    <div className="navbar">
       <a href="/">
         <img src="/assests/logo.png" alt="logo" />
       </a>
@@ -18,7 +19,7 @@ const NavBar = () => {
       <div className="navbar_search">
         <input type="text" placeholder="Search ..." />
         <IconButton>
-          {/* see if u are gonna do the Sass integrations */}
+          {/* TODO: see if u are gonna do the Sass integrations */}
           <Search sx={{ color: "red" }} />
         </IconButton>
       </div>
@@ -32,7 +33,7 @@ const NavBar = () => {
 
         <button
           className="navbar_right_account"
-          onClick={() => setDropDownMenu(true)}
+          onClick={() => setDropDownMenu(!dropDownMenu)}
         >
           <Menu sx={{ color: "red" }} />
           {!user ? (

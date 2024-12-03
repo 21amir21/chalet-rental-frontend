@@ -2,6 +2,7 @@ import { useState } from "react";
 import { setLogin } from "../redux/state";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import "../styles/Login.scss";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -38,7 +39,7 @@ const LoginPage = () => {
 
   return (
     <div className="login">
-      <div className="login_container">
+      <div className="login_content">
         <form className="login_content_form" onSubmit={handleSubmit}>
           <input
             type="email"
