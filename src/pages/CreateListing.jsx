@@ -6,6 +6,8 @@ import { RemoveCircleOutline, AddCircleOutline } from "@mui/icons-material";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { IoIosImages } from "react-icons/io";
 import { BiTrash } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const CreateListing = () => {
   const [category, setCategory] = useState("");
@@ -89,11 +91,65 @@ const CreateListing = () => {
     });
   };
 
+  const creatorId = useSelector((state) => state.user._id);
+  const userToken = useSelector((state) => state.token);
+  const navigate = useNavigate();
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+
+    // creating a new FormData object to handle file uploads
+    try {
+      const chaletFormData = new FormData();
+      chaletFormData.append("creator", creatorId);
+      chaletFormData.append("category", category);
+      chaletFormData.append("type", type);
+      chaletFormData.append("streetAddress", formLocation.streetAddress);
+      chaletFormData.append("aptSuite", formLocation.aptSuite);
+      chaletFormData.append("city", formLocation.city);
+      chaletFormData.append("province", formLocation.province);
+      chaletFormData.append("country", formLocation.country);
+      chaletFormData.append("guestCount", guestCount);
+      chaletFormData.append("bedroomCount", bedroomCount);
+      chaletFormData.append("bedCount", bedCount);
+      chaletFormData.append("bathroomCount", bathroomCount);
+      chaletFormData.append("amenities", amenities);
+      chaletFormData.append("title", formDescription.title);
+      chaletFormData.append("description", formDescription.description);
+      chaletFormData.append("highlight", formDescription.highlight);
+      chaletFormData.append("highlightDesc", formDescription.highlightDesc);
+      chaletFormData.append("price", formDescription.price);
+
+      // append each selected photo to the FormData object to be uploaded
+      photos.forEach((photo) => {
+        chaletFormData.append("listingPhotos", photo);
+      });
+
+      // send the POST request to the server
+      const response = await fetch("http://localhost:5000/chalets", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+        body: chaletFormData,
+      });
+
+      if (response.ok) {
+        navigate("/");
+      } else {
+        const errorData = await response.json();
+        console.error("Error creating chalet:", errorData);
+      }
+    } catch (err) {
+      console.log(`Publishing of chalet faild ${err.message}`);
+    }
+  };
+
   return (
     <>
       <NavBar />
       <div className="create-listing">
-        <form action="">
+        <form onSubmit={handleFormSubmit}>
           <div className="create-listing_step1">
             <h2>Step 1: Tell us about your place</h2>
             <hr />
@@ -316,10 +372,10 @@ const CreateListing = () => {
               {facilities?.map((item, index) => (
                 <div
                   className={`facility ${
-                    amenities.includes(item) ? "selected" : ""
+                    amenities.includes(item.name) ? "selected" : ""
                   }`}
                   key={index}
-                  onClick={() => handleSelectAmenities(item)}
+                  onClick={() => handleSelectAmenities(item.name)}
                 >
                   <div className="facility_icon">{item.icon}</div>
                   <p>{item.name}</p>
@@ -462,6 +518,9 @@ const CreateListing = () => {
               />
             </div>
           </div>
+          <button className="submit_btn" type="submit">
+            POST YOUR CHALET
+          </button>
         </form>
       </div>
     </>
