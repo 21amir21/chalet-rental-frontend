@@ -27,7 +27,7 @@ const LoginPage = () => {
         dispatch(
           setLogin({
             user: loggedIn.user, // TODO: look if u are gonna make it return the whole user or the user._id
-            token: loggedIn.jwt, // TODO: will see if it should be `token` not `jwt`
+            token: loggedIn.token, // TODO: will see if it should be `token` not `jwt`
           })
         );
         navigate("/");

@@ -19,7 +19,6 @@ const NavBar = () => {
       <div className="navbar_search">
         <input type="text" placeholder="Search ..." />
         <IconButton>
-          {/* TODO: see if u are gonna do the Sass integrations */}
           <Search sx={{ color: "red" }} />
         </IconButton>
       </div>
@@ -28,7 +27,7 @@ const NavBar = () => {
         {user ? (
           <a href="/create-listing">Become Host</a>
         ) : (
-          <a href="/login">Become a Host</a>
+          <a href="/users/login">Become a Host</a>
         )}
 
         <button
@@ -40,10 +39,9 @@ const NavBar = () => {
             <Person sx={{ color: "red" }} />
           ) : (
             <img
-              src={`http://localhost:3000/${user.profileImagePath.replace(
-                "public",
-                ""
-              )}`}
+              src={`http://localhost:5000/uploads/${user.profileImagePath
+                .split("/")
+                .pop()}`}
               alt="profile photo"
               style={{ objectFit: "cover", borderRadius: "50%" }}
             />
@@ -52,7 +50,7 @@ const NavBar = () => {
 
         {dropDownMenu && !user && (
           <div className="navbar_right_accountmenu">
-            <Link to="/login">Log In</Link>
+            <Link to="/users/login">Log In</Link>
             <Link to="/register">Sign Up</Link>
           </div>
         )}
@@ -65,7 +63,7 @@ const NavBar = () => {
             <Link to="">Become An Owner</Link>
 
             <Link
-              to="/login"
+              to="/users/login"
               onClick={() => {
                 dispatch(setLogOut());
               }}
