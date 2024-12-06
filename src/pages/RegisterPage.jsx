@@ -49,7 +49,7 @@ const RegisterPage = () => {
       });
 
       if (response.ok) {
-        navigate("/login");
+        navigate("/users/login");
       }
     } catch (err) {
       console.error(`Registration Faild: ${err.message}`);

@@ -43,7 +43,9 @@ const Chalets = () => {
       <div className="category-list">
         {categories?.map((category, index) => (
           <div
-            className={`category `}
+            className={`category ${
+              category.label === selectedCategory ? "selected" : ""
+            }`}
             key={index}
             onClick={() => setSelectedCategory(category.label)}
           >
@@ -67,10 +69,11 @@ const Chalets = () => {
               category,
               type,
               price,
+              booking = false,
             }) => (
               <ChaletCard
                 key={_id}
-                listingId={_id}
+                chaletId={_id}
                 creator={creator}
                 chaletPhotoPaths={chaletPhotoPaths}
                 city={city}
@@ -79,6 +82,7 @@ const Chalets = () => {
                 category={category}
                 type={type}
                 price={price}
+                booking={booking}
               />
             )
           )}
