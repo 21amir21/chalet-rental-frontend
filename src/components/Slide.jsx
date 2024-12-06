@@ -1,3 +1,4 @@
+// TODO: remember to remove the Slide.scss if you are going to use Tailwind CSS for this file
 const Slide = () => {
   return (
     <div

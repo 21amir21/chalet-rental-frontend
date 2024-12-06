@@ -34,6 +34,7 @@ const CategoryPage = () => {
 
   useEffect(() => {
     getFeedChalets();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
   return loading ? (

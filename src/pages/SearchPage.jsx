@@ -34,6 +34,7 @@ const SearchPage = () => {
 
   useEffect(() => {
     getSearchChalets();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
   return loading ? (

@@ -35,6 +35,7 @@ const ChaletDetails = () => {
 
   useEffect(() => {
     getChaletDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // function to handle the select in calendar
