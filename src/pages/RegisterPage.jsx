@@ -59,7 +59,7 @@ const RegisterPage = () => {
   return (
     <div
       className="register"
-      style={{ backgroundImage: 'url("./src/assets/register.jpg")' }}
+      style={{ backgroundImage: 'url("/src/assets/register.jpg")' }}
     >
       <div className="register_content">
         <form className="register_content_form" onSubmit={handleSubmit}>
@@ -101,6 +101,7 @@ const RegisterPage = () => {
             value={formData.confirmPassword}
             onChange={handleChange}
           />
+          {/* TODO: make radio button */}
           <input
             placeholder="User Type"
             name="userType"
@@ -127,7 +128,7 @@ const RegisterPage = () => {
             htmlFor="image"
             className="flex flex-col items-center cursor-pointer gap-2 text-white text-sm"
           >
-            <img src="./src/assets/uploadPhoto.png" alt="add profile image" />
+            <img src="/src/assets/uploadPhoto.png" alt="add profile image" />
             <p>Upload Your Profile Photo</p>
           </label>
 
@@ -144,7 +145,7 @@ const RegisterPage = () => {
           </button>
         </form>
         <a
-          href="/login"
+          href="/users/login"
           className="text-white text-xs mt-4 text-center hover:underline"
         >
           Already have an account? Log In here

@@ -38,7 +38,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="login">
+    <div
+      className="login"
+      style={{ backgroundImage: 'url("/src/assets/login.jpg")' }}
+    >
       <div className="login_content">
         <form className="login_content_form" onSubmit={handleSubmit}>
           <input
@@ -56,7 +59,7 @@ const LoginPage = () => {
             required
           />
           <button type="submit">LOG IN</button>
-          <a href="/register">Dont have an account? Sign in here</a>
+          <a href="/users/register">Dont have an account? Sign up here</a>
         </form>
       </div>
     </div>
