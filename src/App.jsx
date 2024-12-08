@@ -11,6 +11,7 @@ import PropertyList from "./pages/PropertyList";
 import ReservationList from "./pages/ReservationList";
 import CategoryPage from "./pages/CategoryPage";
 import SearchPage from "./pages/SearchPage";
+import PaypalPayment from "./components/PaypalPayment";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             path="/bookings/:userId/reservations"
             element={<ReservationList />}
           />
+          <Route path="/payments" element={<PaypalPayment />} />
         </Routes>
       </BrowserRouter>
     </div>

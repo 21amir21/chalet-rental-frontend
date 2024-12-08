@@ -62,32 +62,32 @@ const ChaletDetails = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmitBooking = async () => {
-    try {
-      const bookingForm = {
-        customerId,
-        chaletId,
-        hostId: chalet.creator._id,
-        startDate: dateRange[0].startDate.toDateString(),
-        endDate: dateRange[0].endDate.toDateString(),
-        totalPrice: chalet.price * dayCount,
-      };
+  // const handleSubmitBooking = async () => {
+  //   try {
+  //     const bookingForm = {
+  //       customerId,
+  //       chaletId,
+  //       hostId: chalet.creator._id,
+  //       startDate: dateRange[0].startDate.toDateString(),
+  //       endDate: dateRange[0].endDate.toDateString(),
+  //       totalPrice: chalet.price * dayCount,
+  //     };
 
-      const response = await fetch("http://localhost:5000/bookings/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(bookingForm),
-      });
+  //     const response = await fetch("http://localhost:5000/bookings/", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(bookingForm),
+  //     });
 
-      if (response.ok) {
-        navigate(`/bookings/${customerId}/trips`);
-      }
-    } catch (err) {
-      console.log("Submit Booking Failed.", err.message);
-    }
-  };
+  //     if (response.ok) {
+  //       navigate(`/bookings/${customerId}/trips`);
+  //     }
+  //   } catch (err) {
+  //     console.log("Submit Booking Failed.", err.message);
+  //   }
+  // };
 
   return loading ? (
     <Loader />
@@ -179,7 +179,20 @@ const ChaletDetails = () => {
               <button
                 type="submit"
                 className="button"
-                onClick={handleSubmitBooking}
+                onClick={() => {
+                  navigate("/payments", {
+                    state: {
+                      chaletId,
+                      customerId,
+                      hostId: chalet.creator._id,
+                      startDate: dateRange[0].startDate.toDateString(),
+                      endDate: dateRange[0].endDate.toDateString(),
+                      totalPrice: chalet.price * dayCount,
+                      chaletTitle: chalet.title, // Add chalet title
+                      chaletDescription: chalet.description, // Add chalet description
+                    },
+                  });
+                }}
               >
                 BOOKING
               </button>
