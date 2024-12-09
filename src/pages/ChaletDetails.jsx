@@ -7,14 +7,17 @@ import "react-date-range/dist/theme/default.css";
 import { DateRange } from "react-date-range";
 import Loader from "../components/Loader";
 import NavBar from "../components/NavBar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Footer from "../components/Footer";
+import { setBookingData } from "../redux/state";
 
 const ChaletDetails = () => {
   const [loading, setLoading] = useState(true);
 
   const { chaletId } = useParams();
   const [chalet, setChalet] = useState(null);
+
+  const dispatch = useDispatch();
 
   const getChaletDetails = async () => {
     try {
@@ -180,6 +183,20 @@ const ChaletDetails = () => {
                 type="submit"
                 className="button"
                 onClick={() => {
+                  const bookingData = {
+                    chaletId,
+                    customerId,
+                    hostId: chalet.creator._id,
+                    startDate: dateRange[0].startDate.toDateString(),
+                    endDate: dateRange[0].endDate.toDateString(),
+                    totalPrice: chalet.price * dayCount,
+                    chaletTitle: chalet.title,
+                    chaletDescription: chalet.description,
+                  };
+
+                  // Dispatch booking data to Redux state
+                  console.log(bookingData);
+                  dispatch(setBookingData(bookingData));
                   navigate("/payments", {
                     state: {
                       chaletId,

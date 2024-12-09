@@ -1,0 +1,157 @@
+@use "./variables" as *;
+@use "./breakpoints" as *;
+
+.page_ {
+  background: url("../assets/register.jpg") center;
+  background-size: cover;
+}
+
+.top_page {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0%;
+  position: relative;
+  width: 80%;
+  margin-right: 10%;
+  margin-left: 10%;
+
+  p {
+    position: relative;
+    top: 50px;
+    font-size: 25px;
+  }
+
+  .edit_button {
+    position: absolute;
+    bottom: 10px;
+    right: 170px;
+    width: 100px;
+    scale: 1.5;
+    color: rgb(0, 0, 0);
+
+    &:hover {
+      box-shadow: none;
+      scale: 1.6;
+    }
+  }
+
+  .profile_picture {
+    margin-top: 5%;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+  }
+}
+
+.register {
+  width: 100vw;
+  height: 100vh;
+  margin-top: 6%;
+
+  &_content {
+    position: relative;
+    top: -100px;
+    width: 50%;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+
+    @include lg {
+      width: 70%;
+    }
+
+    @include mm {
+      width: 80%;
+    }
+
+    &_form {
+      gap: 15px;
+
+      input {
+        width: 80%;
+        padding: 7px 15px;
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        outline: none;
+        text-align: left;
+        color: white;
+        margin-left: 15px;
+
+        input:not(:placeholder-shown):focus {
+          background: transparent; /* or background: none; */
+        }
+
+        &::placeholder {
+          color: white;
+        }
+      }
+
+      .label1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 9px;
+        cursor: pointer;
+        color: white;
+        font-size: 14px;
+
+        img {
+          width: 25px;
+        }
+      }
+      .labels {
+        display: inline;
+        font-size: 20px;
+        text-align: left;
+        width: 100px;
+      }
+      .save_button {
+        margin-top: 15px;
+        position: relative;
+        margin-right: 0px;
+
+        @include buttonStyle;
+        width: 100%;
+
+        &:hover {
+          box-shadow: 0 0 10px 3px rgba(255, 255, 255);
+        }
+      }
+      .one {
+        margin-left: 10%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        width: 80%;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+  margin-top: 10px;
+  text-align: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.delete_button {
+  background-color: rgb(166, 3, 3);
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: rgb(126, 1, 1);
+  }
+}

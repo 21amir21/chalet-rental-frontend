@@ -101,14 +101,47 @@ const RegisterPage = () => {
             value={formData.confirmPassword}
             onChange={handleChange}
           />
-          {/* TODO: make radio button */}
-          <input
-            placeholder="User Type"
-            name="userType"
-            required
-            value={formData.userType}
-            onChange={handleChange}
-          />
+          <div className="user-type-group">
+            <p>Select User Type</p>
+            <div className="radio-container">
+              <label className="radio-label">
+                <input
+                  type="radio"
+                  name="userType"
+                  value="owner"
+                  checked={formData.userType === "owner"}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="custom-radio"></span>
+                Owner
+              </label>
+              <label className="radio-label">
+                <input
+                  type="radio"
+                  name="userType"
+                  value="customer"
+                  checked={formData.userType === "customer"}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="custom-radio"></span>
+                Customer
+              </label>
+              <label className="radio-label">
+                <input
+                  type="radio"
+                  name="userType"
+                  value="admin"
+                  checked={formData.userType === "admin"}
+                  onChange={handleChange}
+                  required
+                />
+                <span className="custom-radio"></span>
+                Admin
+              </label>
+            </div>
+          </div>
 
           {/* Conditional rendering to see if they are matched or not */}
           {!passwordMatch && (
@@ -128,7 +161,7 @@ const RegisterPage = () => {
             htmlFor="image"
             className="flex flex-col items-center cursor-pointer gap-2 text-white text-sm"
           >
-            <img src="/src/assets/uploadPhoto.png" alt="add profile image" />
+            <img src="/src/assets/upload_file.png" alt="add profile image" />
             <p>Upload Your Profile Photo</p>
           </label>
 

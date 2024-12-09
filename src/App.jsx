@@ -12,6 +12,8 @@ import ReservationList from "./pages/ReservationList";
 import CategoryPage from "./pages/CategoryPage";
 import SearchPage from "./pages/SearchPage";
 import PaypalPayment from "./components/PaypalPayment";
+import CompletePayment from "./pages/CompletePayment";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
             element={<ReservationList />}
           />
           <Route path="/payments" element={<PaypalPayment />} />
+          <Route path="/payments/complete" element={<CompletePayment />} />
+          <Route path="/users/:userId" element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -2,7 +2,7 @@ import { IconButton } from "@mui/material";
 import { Search, Person, Menu } from "@mui/icons-material";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { setLogOut } from "../redux/state";
 import "../styles/NavBar.scss";
 
@@ -14,12 +14,14 @@ const NavBar = () => {
   // Search logic
   const [search, setSearch] = useState("");
 
+  const location = useLocation();
+
   const navigate = useNavigate();
 
   return (
     <div className="navbar">
       <a href="/">
-        <img src="/assests/logo.png" alt="logo" />
+        <img src="src/assets/Chill Inn Turqiouse.png" alt="logo" />
       </a>
 
       <div className="navbar_search">
@@ -60,6 +62,12 @@ const NavBar = () => {
                 .pop()}`}
               alt="profile photo"
               style={{ objectFit: "cover", borderRadius: "50%" }}
+              onClick={() => {
+                // Check if the current location is not the user's profile page
+                if (location.pathname !== `/users/${user._id}`) {
+                  navigate(`/users/${user._id}`);
+                }
+              }}
             />
           )}
         </button>
