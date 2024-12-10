@@ -36,7 +36,10 @@ export const userSlice = createSlice({
       state.bookingData = action.payload;
     },
     setUser: (state, action) => {
-      state.user = action.payload.user;
+      state.user = {
+        ...state.user, // Retain existing user properties
+        ...action.payload.user, // Update only the changed properties
+      };
     },
   },
 });
