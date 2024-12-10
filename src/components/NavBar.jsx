@@ -21,7 +21,7 @@ const NavBar = () => {
   return (
     <div className="navbar">
       <a href="/">
-        <img src="src/assets/Chill Inn Turqiouse.png" alt="logo" />
+        <img src="/src/assets/Chill Inn Turqiouse.png" alt="logo" />
       </a>
 
       <div className="navbar_search">

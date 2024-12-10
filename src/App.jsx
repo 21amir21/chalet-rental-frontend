@@ -14,8 +14,10 @@ import SearchPage from "./pages/SearchPage";
 import PaypalPayment from "./components/PaypalPayment";
 import CompletePayment from "./pages/CompletePayment";
 import UserProfile from "./pages/UserProfile";
+import { useSelector } from "react-redux";
 
 function App() {
+  const user = useSelector((state) => state.user);
   return (
     <div>
       <BrowserRouter>
@@ -43,7 +45,24 @@ function App() {
           />
           <Route path="/payments" element={<PaypalPayment />} />
           <Route path="/payments/complete" element={<CompletePayment />} />
-          <Route path="/users/:userId" element={<UserProfile />} />
+          <Route
+            path="/users/:userId"
+            element={
+              user ? (
+                <UserProfile
+                  user={{
+                    userId: user._id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                    profilePhoto: user.profilePhoto,
+                  }}
+                />
+              ) : (
+                <LoginPage />
+              )
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
