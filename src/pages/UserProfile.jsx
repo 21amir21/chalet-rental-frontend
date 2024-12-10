@@ -86,7 +86,7 @@ const UserProfile = ({ user }) => {
       >
         <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
           <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-            User Profile Management
+            Manage Profile
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

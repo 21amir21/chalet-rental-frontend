@@ -67,6 +67,10 @@ const NavBar = () => {
                 if (location.pathname !== `/users/${user._id}`) {
                   navigate(`/users/${user._id}`);
                 }
+
+                if (user.userType === "admin") {
+                  navigate(`/users/admin/${user._id}`);
+                }
               }}
             />
           )}
