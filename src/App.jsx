@@ -14,6 +14,7 @@ import SearchPage from "./pages/SearchPage";
 import PaypalPayment from "./components/PaypalPayment";
 import CompletePayment from "./pages/CompletePayment";
 import UserProfile from "./pages/UserProfile";
+import AdminPage from "./pages/AdminPage";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -63,6 +64,7 @@ function App() {
               )
             }
           />
+          <Route path="/users/admin/:userId" element={<AdminPage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -88,4 +88,27 @@
     z-index: 999;
     background: none;
   }
+
+  .delete-button {
+    background-color: #ff4d4f; /* Red for delete action */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Add padding */
+    font-size: 14px; /* Text size */
+    font-weight: bold; /* Bold text for emphasis */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-top: 10px; /* Add space around the button */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+  }
+
+  .delete-button:hover {
+    background-color: #d9363e; /* Darker red on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
+  }
+
+  .delete-button:active {
+    background-color: #a8071a; /* Even darker red on active click */
+    transform: scale(1); /* Reset scale on click */
+  }
 }

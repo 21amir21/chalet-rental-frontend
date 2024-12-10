@@ -11,6 +11,7 @@ const ReservationList = () => {
   const [loading, setLoading] = useState(true);
   const userId = useSelector((state) => state.user._id);
   const reservationList = useSelector((state) => state.user.reservationList);
+  const token = useSelector((state) => state.token);
 
   const dispatch = useDispatch();
 
@@ -31,6 +32,33 @@ const ReservationList = () => {
     }
   };
 
+  const handleDeleteReservation = async (bookingId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/bookings/${bookingId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete the booking");
+      }
+
+      // Remove the chalet from the reservationList
+      const updatedReservationList = reservationList.filter(
+        (chalet) => chalet._id !== bookingId
+      );
+      dispatch(setReservationList(updatedReservationList));
+    } catch (err) {
+      console.log("Delete booking failed", err.message);
+    }
+  };
+
   useEffect(() => {
     getReservationList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -45,6 +73,7 @@ const ReservationList = () => {
       <div className="list">
         {reservationList?.map(
           ({
+            _id,
             chaletId,
             hostId,
             startDate,
@@ -65,6 +94,7 @@ const ReservationList = () => {
               endDate={endDate}
               totalPrice={totalPrice}
               booking={booking}
+              onDelete={() => handleDeleteReservation(_id)}
             />
           )
         )}

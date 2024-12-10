@@ -24,6 +24,7 @@ const ChaletCard = ({
   endDate,
   totalPrice,
   booking,
+  onDelete, // New prop
 }) => {
   // Slider for images
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -132,6 +133,15 @@ const ChaletCard = ({
           </p>
         </>
       )}
+      <button
+        className="delete-button"
+        onClick={(e) => {
+          e.stopPropagation();
+          onDelete();
+        }}
+      >
+        Delete
+      </button>
 
       <button
         className="favorite"
